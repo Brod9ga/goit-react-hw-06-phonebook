@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
+
 
 const ContactForm = ({ onAddContact }) => {
   const [name, setName] = useState("");
@@ -18,12 +18,7 @@ const ContactForm = ({ onAddContact }) => {
     setName("");
     setNumber("");
   };
-  // useEffect(() => {
-  //   const savedStringifiedContacts = localStorage.getItem('contacts');
-  //   const savedContacts = JSON.parse(savedStringifiedContacts) ?? [];
-  //   localStorage.setItem('contacts', JSON.stringify(savedContacts));
-  // }, []);
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div>

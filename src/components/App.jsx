@@ -5,7 +5,6 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import PropTypes from 'prop-types';
 
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContacts, setFilter } from 'redux/contactListReduser';
 
