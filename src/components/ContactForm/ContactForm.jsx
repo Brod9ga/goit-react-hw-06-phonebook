@@ -18,11 +18,11 @@ const ContactForm = ({ onAddContact }) => {
     setName("");
     setNumber("");
   };
-  useEffect(() => {
-    const savedStringifiedContacts = localStorage.getItem('contacts');
-    const savedContacts = JSON.parse(savedStringifiedContacts) ?? [];
-    localStorage.setItem('contacts', JSON.stringify(savedContacts));
-  }, []);
+  // useEffect(() => {
+  //   const savedStringifiedContacts = localStorage.getItem('contacts');
+  //   const savedContacts = JSON.parse(savedStringifiedContacts) ?? [];
+  //   localStorage.setItem('contacts', JSON.stringify(savedContacts));
+  // }, []);
   
   return (
     <form onSubmit={handleSubmit}>
