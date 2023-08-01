@@ -41,16 +41,7 @@ export const App = () => {
     dispatch(setFilter(event.target.value));
   };
 
-  // useEffect(() => {
-  //   const savedStringifiedContacts = localStorage.getItem('contacts');
-  //   const contacts = JSON.parse(savedStringifiedContacts) ?? [];
-  //   dispatch(setContacts(contacts));
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   const savedStringifiedContacts = JSON.stringify(contacts);
-  //   localStorage.setItem('contacts', savedStringifiedContacts);
-  // }, [contacts]);
+  
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())

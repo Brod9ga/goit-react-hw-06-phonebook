@@ -20,6 +20,7 @@ const contactListSlice = createSlice({
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
+    
   },
 });
 

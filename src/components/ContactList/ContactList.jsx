@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const ContactList = ({ contacts, onDelete }) => {
+const ContactList = ({ onDelete }) => {
+  const contacts = useSelector(state => state.contactList.contacts);
+  
   return (
     <ul>
       {contacts.map(contact => (
