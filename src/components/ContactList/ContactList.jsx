@@ -1,15 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setContacts } from "redux/contactListReduser";
 
-const ContactList = ({ onDelete }) => {
+
+const ContactList = () => {
   const contacts = useSelector(state => state.contactList.contacts);
-  
+  const wordForFilter = useSelector(state=>state.contactList.wordForFilter)
+
+const dispatch=useDispatch()
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(wordForFilter.toLowerCase())
+  );
+  const handleDelete = contactId => {
+    const updatedContacts = contacts.filter(contact => contact.id !== contactId);
+    dispatch(setContacts(updatedContacts));
+  };
   return (
     <ul>
-      {contacts.map(contact => (
+      {filteredContacts.map(contact => (
         <li key={contact.id}>
           {contact.name}: {contact.number}
-          <button onClick={() => onDelete(contact.id)}>Delete</button>
+          <button onClick={() => handleDelete(contact.id)}>Delete</button>
         </li>
       ))}
     </ul>

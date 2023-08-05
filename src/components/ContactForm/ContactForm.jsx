@@ -1,20 +1,35 @@
+import { nanoid } from "nanoid";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setContacts } from "redux/contactListReduser";
 
-
-const ContactForm = ({ onAddContact }) => {
+const ContactForm = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const changeForm = event => {
-    const { name, value } = event.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'number') {
-      setNumber(value);
-    }
-  };
-  const handleSubmit = event => {
+  const contacts = useSelector((state) => state.contactList.contacts);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    onAddContact(name, number);
+
+    const existingContact = contacts.find(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (existingContact) {
+      alert("Контакт с таким именем уже существует!");
+      return;
+    }
+
+    const newContact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
+    dispatch(setContacts([...contacts, newContact]));
+
+    // Очищаем поля формы после добавления контакта
     setName("");
     setNumber("");
   };
@@ -24,7 +39,7 @@ const ContactForm = ({ onAddContact }) => {
       <div>
         <h2>Name</h2>
         <input
-          onChange={changeForm}
+          onChange={(event) => setName(event.target.value)}
           value={name}
           type="text"
           name="name"
@@ -36,7 +51,7 @@ const ContactForm = ({ onAddContact }) => {
       <div>
         <h2>Phone number</h2>
         <input
-          onChange={changeForm}
+          onChange={(event) => setNumber(event.target.value)}
           value={number}
           type="tel"
           name="number"
@@ -45,7 +60,7 @@ const ContactForm = ({ onAddContact }) => {
           required
         />
       </div>
-      <button>Add number</button>
+      <button type="submit">Add number</button>
     </form>
   );
 };

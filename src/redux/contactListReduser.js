@@ -8,6 +8,7 @@ const initialState = {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ],
   filter: '',
+  wordForFilter: '',
 };
 
 const contactListSlice = createSlice({
@@ -20,9 +21,14 @@ const contactListSlice = createSlice({
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
-    
+    filteredContacts: (state, action)=>{
+        state.filter = action.payload;
+    },
+    setWordForFilter: (state, action)=>{
+state.wordForFilter = action.payload
+    }
   },
 });
 
-export const { setContacts, setFilter } = contactListSlice.actions;
+export const { setContacts, setFilter, filteredContacts, setWordForFilter } = contactListSlice.actions;
 export const contactListReducer = contactListSlice.reducer;
